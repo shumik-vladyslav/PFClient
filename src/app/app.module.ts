@@ -22,6 +22,8 @@ import {GenReqDetailsComponent} from "./components/genreq/gen-req-details.compon
 import {NavigationComponent} from "./components/navigation/navigation.component";
 import {TopNavbarComponent} from "./components/topnavbar/topnavbar.component";
 
+import {DataTableModule, SharedModule} from 'primeng/primeng';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +42,8 @@ import {TopNavbarComponent} from "./components/topnavbar/topnavbar.component";
     TopNavbarComponent
   ],
   imports: [
+    SharedModule,
+    DataTableModule,
     BrowserModule,
     FormsModule,
     HttpModule,
