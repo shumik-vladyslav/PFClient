@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="card card-container">
+    <img id="profile-img" class="profile-img-card" src="assets/logo.jpg" />
+    <p id="profile-name" class="profile-name-card"></p>
+    <form class="form-signin">
+      <div class="alert" *ngIf="message" [class.alert-success]="!error" [class.alert-danger]="error">
+        {{message}}
+      </div>
+      <input name="passw" type="password" id="inputPassword" class="form-control" placeholder="Password" required [(ngModel)]="password">
+      <input name="retpassw" type="password" id="inputPassword1" class="form-control" placeholder="Retype Password" required [(ngModel)]="retpassword">
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="onChangePass()">Save new password</button>
+    </form><!-- /form -->
+    <a routerLink="/login" class="forgot-password">
+      Go to login
+    </a>
+  </div><!-- /card-container -->
+</div><!-- /container -->

@@ -1,0 +1,26 @@
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+
+
+
+  <ul class="sidebar-nav">
+    <div>
+      <img id="profile-img" class="profile-img-card" src="assets/logo.jpg"  width="96px" height="96px"/>
+    </div>
+    <!--<li class="sili class=nd">-->
+      <!--<a href="#">-->
+        <!--Productive Families-->
+      <!--</a>-->
+    <!--</li>-->
+    <li [ngClass]="{active: activeRoute('/chefs')}">
+      <a routerLink="/chefs"><i class="fa  fa-cutlery"></i> <span class="nav-label">Chefs</span></a>
+    </li>
+    <li [ngClass]="{active: activeRoute('/clients')}">
+      <a routerLink="/clients"><i class="fa fa fa-user"></i> <span class="nav-label">Clients</span></a>
+    </li>
+    <li [ngClass]="{active: activeRoute('/genreqs')}">
+      <a routerLink="/genreqs"><i class="fa  fa-envelope"></i> <span class="nav-label">General Requests</span></a>
+    </li>
+  </ul>
+</div>
+<!-- /#sidebar-wrapper -->

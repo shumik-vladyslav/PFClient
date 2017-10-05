@@ -1,0 +1,249 @@
+<!--create dialog-->
+<div id="create-form" class="modal fade" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form-edit" enctype="multipart/form-data" #CreateChef="ngForm" (ngSubmit)="onSave(CreateChef)">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Chef</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div >
+            <input name= "id" ngModel hidden>
+            <input name= "createdby" ngModel hidden>
+            <input name= "creation_time" ngModel hidden>
+            <input name= "last_modify_by" ngModel hidden>
+            <input name= "last_modify_time" ngModel hidden>
+            <input name= "password_lastmodify" ngModel hidden>
+            <input name= "images_iid" ngModel hidden>
+            <input name= "user_uid" ngModel hidden>
+            <input name= "usertype_id" ngModel hidden>
+            <input name= "image_path" ngModel hidden>
+
+            <div class="col-sm-12">
+              <div class="form-group">
+                <img id="preview" src="#" alt="preview image" width="96" height="96"/>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Image</label>
+                <input name= "image" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg,.webx" ngModel>
+              </div>
+            </div>
+
+            <!--NAME-->
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Name</label>
+                <input type="text" name="name" class="form-control" required  #name="ngModel" ngModel>
+                <!--VALIDATION-->
+                <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+                  <div [hidden]="!name.errors.required">
+                    Name is required
+                  </div>
+                </div>
+                <!--END_VALIDATON-->
+              </div>
+            </div>
+            <!--NAME-->
+
+            <!--EMAIL-->
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Email</label>
+                <input type="text" name="email" class="form-control" required ngModel #email="ngModel">
+                <!--VALIDATION-->
+                <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger"
+                     pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'>
+                  <div [hidden]="!email.errors.required">
+                    Email is required
+                  </div>
+                  <div [hidden]="!cemail.errors.pattern">
+                    Format is incorrect
+                  </div>
+                </div>
+                <!--END_VALIDATON-->
+              </div>
+            </div>
+            <!--EMAIL-->
+
+            <!--IS ACTIVE-->
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Is Active</label>
+                <input type="checkbox" name="is_active" ngModel>
+              </div>
+            </div>
+            <!--IS ACTIVE-->
+
+            <!--PHONE-->
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Phone</label>
+                <input type="text" name="phone_number" class="form-control" required ngModel #phone="ngModel">
+                <!--VALIDATION-->
+                <div *ngIf="phone.errors && (phone.dirty || phone.touched)" class="alert alert-danger">
+                  <div [hidden]="!phone.errors.required">
+                    Phone is required
+                  </div>
+                </div>
+                <!--END_VALIDATON-->
+              </div>
+            </div>
+            <!--PHONE-->
+
+            <!--PASSWORD-->
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Password</label>
+                <input type="text" name="password" class="form-control" required ngModel #pass="ngModel">
+                <!--VALIDATION-->
+                <div *ngIf="pass.errors && (pass.dirty || pass.touched)" class="alert alert-danger">
+                  <div [hidden]="!pass.errors.required">
+                    Password is required
+                  </div>
+                </div>
+                <!--END_VALIDATON-->
+              </div>
+            </div>
+            <!--PASSWORD-->
+
+            <!--DESCRIPTION-->
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Description</label>
+                <input type="text" name="description" class="form-control" ngModel>
+              </div>
+            </div>
+            <!--DESCRIPTION-->
+
+            <!--AVERAGE_RATING-->
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Average rating</label>
+                <input type="number" name="average_rating" class="form-control" required ngModel #avrat="ngModel">
+                <!--VALIDATION-->
+                <div *ngIf="avrat.errors && (avrat.dirty || avrat.touched)" class="alert alert-danger">
+                  <div [hidden]="!avrat.errors.required">
+                    Average rating is required
+                  </div>
+                </div>
+                <!--END_VALIDATON-->
+              </div>
+            </div>
+            <!--AVERAGE_RATING-->
+
+            <!--LAT-->
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Latitude</label>
+                <input type="number" name="lat" class="form-control" required ngModel #lat="ngModel">
+                <!--VALIDATION-->
+                <div *ngIf="lat.errors && (lat.dirty || lat.touched)" class="alert alert-danger">
+                  <div [hidden]="!lat.errors.required">
+                    Latitude rating is required
+                  </div>
+                </div>
+                <!--END_VALIDATON-->
+              </div>
+            </div>
+            <!--LAT-->
+
+            <!--LON-->
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Longitude</label>
+                <input type="number" name="lon" class="form-control" required ngModel #lon="ngModel">
+                <!--VALIDATION-->
+                <div *ngIf="lon.errors && (lon.dirty || lon.touched)" class="alert alert-danger">
+                  <div [hidden]="!lon.errors.required">
+                    Longitude rating is required
+                  </div>
+                </div>
+                <!--END_VALIDATON-->
+              </div>
+            </div>
+            <!--LON-->
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" href="#create-form" data-toggle="modal" class="btn btn-warning" [disabled]="CreateChef.invalid">Save</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<button class="btn btn-warning" (click)="onNewChef()">Create Chef</button>
+<hr>
+
+<div class="row">
+  <div class="col-sm-8"></div>
+  <div class="col-sm-4"><input #gb type="text" placeholder="Filter" class="form-control"></div>
+</div>
+
+<p-dataTable [value]="chefsList" [rows]="10" [paginator]="true" [globalFilter]="gb">
+
+  <p-column header="Image">
+    <ng-template let-o="rowData" pTemplate="body">
+      <img id="preview" [src]="o.image_path?o.image_path:'#'" alt="preview image" width="96" height="96"/>
+    </ng-template>
+  </p-column>
+  <p-column field="id" header="Id" [sortable]="true"> </p-column>
+  <p-column field="average_rating" header="Average rating" [sortable]="true"> </p-column>
+  <p-column field="is_active" header="Is Active" [sortable]="true"> </p-column>
+  <p-column field="description" header="Description" [sortable]="true"> </p-column>
+  <p-column field="name" header="Name" [sortable]="true"> </p-column>
+  <p-column field="email" header="Email" [sortable]="true"> </p-column>
+
+  <p-column header="Actions">
+    <ng-template let-o="rowData" pTemplate="body">
+      <a class="btn btn-sm btn-warning" routerLink="/chefs/{{o.id}}/dishes/">Dishes</a>
+      <a class="btn btn-sm btn-warning" routerLink="/chefs/{{o.id}}/">Details</a>
+      <button class="btn btn-sm btn-warning" (click)="onEdit(o,CreateChef)">Edit</button>
+      <button *ngIf="!o.block" class="btn btn-sm btn-danger" href="#block-form" data-toggle="modal" (click)="blockId=o.user_uid">Block</button>
+      <button *ngIf="o.block" class="btn btn-sm btn-danger" (click)="onUnblock(o.user_uid)">Unblock</button>
+      <button class="btn btn-sm btn-danger" (click)="onDelete(o.id, o.user_uid)">Delete</button>
+    </ng-template>
+  </p-column>
+</p-dataTable>
+
+<div id="block-form" class="modal fade" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form-edit" enctype="multipart/form-data" #BlockForm="ngForm" (ngSubmit)="onBlock(blockId,BlockForm)">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Block Chef</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <!--NAME-->
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label">Block reason</label>
+                <input type="text" name="blockreason" class="form-control" required  #reason="ngModel" ngModel>
+                <!--VALIDATION-->
+                <div *ngIf="reason.errors && (reason.dirty || reason.touched)" class="alert alert-danger">
+                  <div [hidden]="!reason.errors.required">
+                    Name is required
+                  </div>
+                </div>
+                <!--END_VALIDATON-->
+              </div>
+            </div>
+            <!--NAME-->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" href="#block-form" data-toggle="modal" class="btn btn-danger" [disabled]="BlockForm.invalid">Block</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

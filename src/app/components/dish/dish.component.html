@@ -1,0 +1,159 @@
+<!--create dialog-->
+<div id="create-form" class="modal fade" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form-edit" enctype="multipart/form-data" #CreateDish="ngForm" (ngSubmit)="onSave(CreateDish)">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Dish</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <input name= "id" ngModel hidden>
+          <input name= "serviceprovider_spid" ngModel hidden>
+          <input name= "images_iid" ngModel hidden>
+          <input name= "creation" ngModel hidden>
+          <input name= "lastmodifytime" ngModel hidden>
+          <input name= "image_path" ngModel hidden>
+          <input name= "cat_name" ngModel hidden>
+            <div >
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <img id="preview" src="#" alt="preview image" width="96" height="96"/>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Image</label>
+                  <input name= "image" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg,.webx" ngModel>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Name</label>
+                  <input type="text" name="name" required class="form-control" ngModel #name="ngModel">
+                  <!--VALIDATION-->
+                  <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+                    <div [hidden]="!name.errors.required">
+                      Name is required
+                    </div>
+                  </div>
+                  <!--END_VALIDATON-->
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Available</label>
+                  <input type="number" name="available" required class="form-control" ngModel #avail="ngModel">
+                  <!--VALIDATION-->
+                  <div *ngIf="avail.errors && (avail.dirty || avail.touched)" class="alert alert-danger">
+                    <div [hidden]="!avail.errors.required">
+                      Available is required
+                    </div>
+                  </div>
+                  <!--END_VALIDATON-->
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Description</label>
+                  <input type="text" name="discription" required class="form-control" ngModel #diskr="ngModel">
+                  <!--VALIDATION-->
+                  <div *ngIf="diskr.errors && (diskr.dirty || diskr.touched)" class="alert alert-danger">
+                    <div [hidden]="!diskr.errors.required">
+                      Description is required
+                    </div>
+                  </div>
+                  <!--END_VALIDATON-->
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Price</label>
+                  <input type="number" name="price"  required class="form-control" ngModel #price="ngModel">
+                  <!--VALIDATION-->
+                  <div *ngIf="price.errors && (price.dirty || price.touched)" class="alert alert-danger">
+                    <div [hidden]="!price.errors.required">
+                      Price is required
+                    </div>
+                  </div>
+                  <!--END_VALIDATON-->
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Foodcategory</label>
+                  <select name="foodcatrgory_fcid" class="form-control" ngModel>
+                    <option *ngFor="let c of foodcatObserver | async" [ngValue]="c.id">{{c.name}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" href="#create-form" data-toggle="modal" class="btn btn-warning" [disabled]="CreateDish.invalid">Save</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--END CREATE FORM-->
+
+<button class="btn btn-warning" (click)="onNewDish(CreateDish)">Create Dish</button>
+<!--<hr>-->
+<!--<table class="table">-->
+  <!--<thead>-->
+  <!--<tr>-->
+    <!--<th>Image</th>-->
+    <!--<th>Id</th>-->
+    <!--<th>Name</th>-->
+    <!--<th>Available</th>-->
+    <!--<th>Price</th>-->
+    <!--<th>Foodcategory</th>-->
+    <!--<th>Actions</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody>-->
+  <!--<tr *ngFor="let o of dishesList;let i=index">-->
+    <!--&lt;!&ndash;serverUrl+&ndash;&gt;-->
+    <!--<td><img id="preview" [src]="o.image_path" alt="preview image" width="96" height="96"/></td>-->
+    <!--<td>{{o.id}}</td>-->
+    <!--<td>{{o.name}}</td>-->
+    <!--<td>{{o.available}}</td>-->
+    <!--<td>{{o.price}}</td>-->
+    <!--<td>{{o.cat_name}}</td>-->
+    <!--<td>-->
+      <!--<a class="btn btn-sm btn-warning" routerLink="/dishes/{{o.id}}/">Details</a>-->
+      <!--<button class="btn btn-sm btn-warning" (click)="onEdit(o,CreateDish)">Edit</button>-->
+      <!--<button class="btn btn-sm btn-danger" (click)="onDelete(o.id)">Del</button>-->
+    <!--</td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+<!--</table>-->
+
+<div class="row">
+  <div class="col-sm-8"></div>
+  <div class="col-sm-4"><input #gb type="text" placeholder="Filter" class="form-control"></div>
+</div>
+
+<p-dataTable [value]="dishesList" [rows]="10" [paginator]="true" [globalFilter]="gb">
+
+  <p-column header="Image">
+    <ng-template let-o="rowData" pTemplate="body">
+      <img id="preview" [src]="o.image_path?o.image_path:'#'" alt="preview image" width="96" height="96"/>
+    </ng-template>
+  </p-column>
+  <p-column field="id" header="Id" [sortable]="true"> </p-column>
+  <p-column field="name" header="Name" [sortable]="true"> </p-column>
+  <p-column field="available" header="Available" [sortable]="true"> </p-column>
+  <p-column field="price" header="Price" [sortable]="true"> </p-column>
+  <p-column field="cat_name" header="Foodcategory" [sortable]="true"> </p-column>
+  <p-column header="Actions">
+    <ng-template let-o="rowData" pTemplate="body">
+      <a class="btn btn-sm btn-warning" routerLink="/dishes/{{o.id}}/">Details</a>
+      <button class="btn btn-sm btn-warning" (click)="onEdit(o,CreateDish)">Edit</button>
+      <button class="btn btn-sm btn-danger" (click)="onDelete(o.id)">Del</button>
+    </ng-template>
+  </p-column>
+</p-dataTable>

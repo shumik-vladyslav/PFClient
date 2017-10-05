@@ -1,0 +1,185 @@
+<!--create dialog-->
+<div id="create-form" class="modal fade" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form-edit" enctype="multipart/form-data" #CreateGenReq="ngForm" (ngSubmit)="onSave(CreateGenReq)">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Client</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div >
+              <input name= "id" ngModel hidden>
+              <input name= "req_time" ngModel hidden>
+
+              <!--Cunsomer ID-->
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Cunsumer</label>
+                  <select name="consumer_cid" ngModel class="form-control" #cunsid="ngModel" required>
+                    <option *ngFor="let c of cunsomerObserver | async" [ngValue]="c.id">{{c.name}}</option>
+                  </select>
+                  <!--VALIDATION-->
+                  <div *ngIf="cunsid.errors && (cunsid.dirty || cunsid.touched)" class="alert alert-danger">
+                    <div [hidden]="!cunsid.errors.required">
+                      Cunsomer Id is required
+                    </div>
+                  </div>
+                  <!--END_VALIDATON-->
+                </div>
+              </div>
+              <!--Cunsomer ID-->
+
+              <!--DETAILS-->
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Details</label>
+                  <input type="text" name="req_details" ngModel class="form-control" required #reqdet="ngModel">
+                  <!--VALIDATION-->
+                  <div *ngIf="reqdet.errors && (reqdet.dirty || reqdet.touched)" class="alert alert-danger">
+                    <div [hidden]="!reqdet.errors.required">
+                      Details is required
+                    </div>
+                  </div>
+                  <!--END_VALIDATON-->
+                </div>
+              </div>
+              <!--DETAILS-->
+
+              <!--SUBJECT-->
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Subject</label>
+                  <input type="text" name="req_subject" ngModel class="form-control" required #subj="ngModel">
+                  <!--VALIDATION-->
+                  <div *ngIf="subj.errors && (subj.dirty || subj.touched)" class="alert alert-danger">
+                    <div [hidden]="!subj.errors.required">
+                      Subject is required
+                    </div>
+                  </div>
+                  <!--END_VALIDATON-->
+                </div>
+              </div>
+              <!--SUBJECT-->
+
+              <!--STATUS-->
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Status</label>
+                  <select name="status" ngModel class="form-control" required #status="ngModel">
+                    <option *ngFor="let c of statusObserver | async" [ngValue]="c.id">{{c.name}}</option>
+                  </select>
+                  <!--VALIDATION-->
+                  <div *ngIf="status.errors && (status.dirty || status.touched)" class="alert alert-danger">
+                    <div [hidden]="!status.errors.required">
+                      Status is required
+                    </div>
+                  </div>
+                  <!--END_VALIDATON-->
+                </div>
+              </div>
+              <!--STATUS-->
+
+              <!--LAT-->
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Latitude</label>
+                  <input type="number" name="lat" ngModel class="form-control" required #lat="ngModel">
+                  <!--VALIDATION-->
+                  <div *ngIf="lat.errors && (lat.dirty || lat.touched)" class="alert alert-danger">
+                    <div [hidden]="!lat.errors.required">
+                      Latitude is required
+                    </div>
+                  </div>
+                  <!--END_VALIDATON-->
+                </div>
+              </div>
+              <!--LAT-->
+
+              <!--LON-->
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Longitude</label>
+                  <input type="number" name="lon" ngModel class="form-control" required #lon="ngModel">
+                  <!--VALIDATION-->
+                  <div *ngIf="lon.errors && (lon.dirty || lon.touched)" class="alert alert-danger">
+                    <div [hidden]="!lon.errors.required">
+                      Longitude is required
+                    </div>
+                  </div>
+                  <!--END_VALIDATON-->
+                </div>
+              </div>
+              <!--LON-->
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" href="#create-form" data-toggle="modal" class="btn btn-warning" [disabled]="CreateGenReq.invalid">Save</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<button class="btn btn-warning" (click)="onNewGenreq(CreateGenReq)">Create General Request</button>
+<hr>
+
+<!--<table class="table">-->
+  <!--<thead>-->
+  <!--<tr>-->
+    <!--<th>Id</th>-->
+    <!--<th>Cunsomer Id</th>-->
+    <!--<th>Request Time</th>-->
+    <!--<th>Subject</th>-->
+    <!--<th>Status</th>-->
+    <!--<th>Latitude</th>-->
+    <!--<th>Longitude</th>-->
+    <!--<th>Actions</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody>-->
+  <!--<tr *ngFor="let o of genReqList;let i=index">-->
+    <!--<td>{{o.id}}</td>-->
+    <!--<td>{{o.consumer_cid}}</td>-->
+    <!--<td>{{o.req_time}}</td>-->
+    <!--<td>{{o.req_subject}}</td>-->
+    <!--<td>{{o.status}}</td>-->
+    <!--<td>{{o.lon}}</td>-->
+    <!--<td>{{o.lat}}</td>-->
+    <!--<td>-->
+      <!--<a class="btn btn-sm btn-warning" routerLink="/genreqs/{{o.id}}/">Details</a>-->
+      <!--<button class="btn btn-sm btn-warning" (click)="onEdit(o,CreateGenReq)">Edit</button>-->
+      <!--<button class="btn btn-sm btn-danger" (click)="onDelete(o.id)">Delete</button>-->
+    <!--</td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+<!--</table>-->
+
+<div class="row">
+  <div class="col-sm-8"></div>
+  <div class="col-sm-4"><input #gb type="text" placeholder="Filter" class="form-control"></div>
+</div>
+
+<p-dataTable [value]="genReqList" [rows]="10" [paginator]="true" [globalFilter]="gb">
+
+  <p-column header="Image">
+    <ng-template let-o="rowData" pTemplate="body">
+      <img id="preview" [src]="o.image_path?o.image_path:'#'" alt="preview image" width="96" height="96"/>
+    </ng-template>
+  </p-column>
+  <p-column field="id" header="Id" [sortable]="true"> </p-column>
+  <p-column field="consumer_cid" header="Cunsomer Id" [sortable]="true"> </p-column>
+  <p-column field="req_time" header="Request Time" [sortable]="true"> </p-column>
+  <p-column field="req_subject" header="Subject" [sortable]="true"> </p-column>
+  <p-column field="lon" header="Latitude" [sortable]="true"> </p-column>
+  <p-column field="lat" header="Longitude" [sortable]="true"> </p-column>
+
+  <p-column header="Actions">
+    <ng-template let-o="rowData" pTemplate="body">
+      <a class="btn btn-sm btn-warning" routerLink="/genreqs/{{o.id}}/">Details</a>
+      <button class="btn btn-sm btn-warning" (click)="onEdit(o,CreateGenReq)">Edit</button>
+      <button class="btn btn-sm btn-danger" (click)="onDelete(o.id)">Delete</button>
+    </ng-template>
+  </p-column>
+</p-dataTable>
