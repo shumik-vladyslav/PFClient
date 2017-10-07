@@ -20,7 +20,6 @@ import {ClientDetailsComponent} from "./components/client/client-datails.compone
 import { GenreqComponent } from './components/genreq/genreq.component';
 import {GenReqDetailsComponent} from "./components/genreq/gen-req-details.component";
 import {NavigationComponent} from "./components/navigation/navigation.component";
-import {TopNavbarComponent} from "./components/topnavbar/topnavbar.component";
 
 import {DataTableModule, SharedModule} from 'primeng/primeng';
 
@@ -38,8 +37,7 @@ import {DataTableModule, SharedModule} from 'primeng/primeng';
     ClientDetailsComponent,
     GenreqComponent,
     GenReqDetailsComponent,
-    NavigationComponent,
-    TopNavbarComponent
+    NavigationComponent
   ],
   imports: [
     SharedModule,
