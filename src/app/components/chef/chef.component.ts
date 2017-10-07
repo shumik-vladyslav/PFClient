@@ -102,7 +102,7 @@ export class ChefComponent implements OnInit {
 
   constructor(private http: Http) {
   }
-
+  blockId;
   chefsObserver = this.http.get(config.api_prefix + 'chef').map(resp => resp.json().result);
   imageObserver =  this.http.get(config.api_prefix + 'utils/image').map(resp => resp.json().result);
   chefsList;
@@ -230,3 +230,5 @@ export class ChefComponent implements OnInit {
     }
   }
 }
+
+export default ChefComponent;

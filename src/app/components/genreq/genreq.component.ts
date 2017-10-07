@@ -95,3 +95,5 @@ export class GenreqComponent implements OnInit {
     );
   }
 }
+
+export default GenreqComponent;

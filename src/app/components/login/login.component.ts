@@ -43,3 +43,5 @@ export class LoginComponent implements OnInit {
     );
   }
 }
+
+export default LoginComponent;

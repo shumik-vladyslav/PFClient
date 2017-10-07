@@ -30,3 +30,5 @@ export class NavigationComponent {
     return this.router.url.indexOf(routename) > -1;
   }
 }
+
+export default NavigationComponent;

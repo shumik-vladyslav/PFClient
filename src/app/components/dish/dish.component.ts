@@ -154,3 +154,5 @@ export class DishComponent implements OnInit {
     }
   }
 }
+
+export default DishComponent;

@@ -1,10 +1,10 @@
-import { ProductiveFamiliesPage } from './app.po';
+import { NewclienPage } from './app.po';
 
-describe('productive-families App', () => {
-  let page: ProductiveFamiliesPage;
+describe('newclien App', () => {
+  let page: NewclienPage;
 
   beforeEach(() => {
-    page = new ProductiveFamiliesPage();
+    page = new NewclienPage();
   });
 
   it('should display message saying app works', () => {

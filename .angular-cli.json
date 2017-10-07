@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "productive-families"
+    "name": "newclien"
   },
   "apps": [
     {
       "root": "src",
-      "outDir": "../server/dist/public",
+      "outDir": "dist",
       "assets": [
         "assets",
         "favicon.ico"

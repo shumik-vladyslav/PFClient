@@ -27,6 +27,7 @@ export interface ClientData {
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit {
+  blockId;
   model: ClientData;
   editMode: boolean;
   clientObserver = this.http.get(config.api_prefix + 'client').map(resp => resp.json().result);
@@ -138,3 +139,5 @@ export class ClientComponent implements OnInit {
     }
   }
 }
+
+export default ClientComponent;
