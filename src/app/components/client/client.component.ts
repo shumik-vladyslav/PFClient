@@ -75,7 +75,7 @@ export class ClientComponent implements OnInit {
       formData.append('creation', new Date().toISOString())
       request = this.http.post(config.api_prefix + 'client/', formData);
     } else {
-      request = this.http.patch(config.api_prefix + 'client/', model);
+      request = this.http.patch(config.api_prefix + 'client/', formData);
     }
 
     request.subscribe(
