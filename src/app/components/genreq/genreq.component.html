@@ -162,12 +162,6 @@
 </div>
 
 <p-dataTable [value]="genReqList" [rows]="10" [paginator]="true" [globalFilter]="gb">
-
-  <p-column header="Image">
-    <ng-template let-o="rowData" pTemplate="body">
-      <img id="preview" [src]="o.image_path?o.image_path:'#'" alt="preview image" width="96" height="96"/>
-    </ng-template>
-  </p-column>
   <p-column field="id" header="Id" [sortable]="true"> </p-column>
   <p-column field="consumer_cid" header="Cunsomer Id" [sortable]="true"> </p-column>
   <p-column field="req_time" header="Request Time" [sortable]="true"> </p-column>
